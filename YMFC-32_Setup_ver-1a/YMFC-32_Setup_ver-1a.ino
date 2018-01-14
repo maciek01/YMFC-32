@@ -28,7 +28,8 @@ int16_t manual_gyro_roll_cal_value = 0;
 int16_t manual_gyro_yaw_cal_value = 0;
 
 
-HardWire HWire(2, I2C_FAST_MODE);
+//HardWire HWire(2, I2C_FAST_MODE);
+TwoWire HWire(2, I2C_FAST_MODE);
 
 //Let's declare some variables so we can use them in the complete program.
 //int16_t = signed 16 bit integer
@@ -71,6 +72,7 @@ void setup() {
   red_led(LOW);                                                 //Set output PB4 low.
 
   Serial.begin(57600);                                          //Set the serial output to 57600 kbps.
+  Serial.println(F("init start"));
   delay(100);                                                    //Give the serial port some time to start to prevent data loss.
   timer_setup();                                                //Setup the timers for the receiver inputs and ESC's output.
   delay(50);                                                    //Give the timers some time to start.
@@ -97,6 +99,7 @@ void setup() {
   HWire.endTransmission();                                      //End the transmission with the gyro.
 
   print_intro();                                                //Print the intro on the serial monitor.
+  Serial.println(F("init exit"));
 }
 
 void loop() {

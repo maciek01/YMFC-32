@@ -35,7 +35,7 @@ void timer_setup(void) {
   TIMER3_BASE->ARR = 0xFFFF;
   TIMER3_BASE->DCR = 0;
 
-//A test is needed to check if the throttle input is active and valid. Otherwise the ESC's might start without any warning.
+  //A test is needed to check if the throttle input is active and valid. Otherwise the ESC's might start without any warning.
   loop_counter = 0;
   while ((channel_3 > 2100 || channel_3 < 900) && warning == 0) {
     delay(100);
@@ -54,27 +54,29 @@ void timer_setup(void) {
     }
     if (loop_counter > 40 && loop_counter % 10 == 0)Serial.print(F("."));
 
-      if (loop_counter == 90) {
+    if (loop_counter == 90) {
       Serial.println(F(""));
       Serial.println(F(""));
       Serial.println(F("The ESC outputs are disabled for safety!!!"));
       warning = 1;
     }
   }
+  //MNK
+  //warning = 0;
+
   if (warning == 0) {
     TIMER4_BASE->CR1 = TIMER_CR1_CEN | TIMER_CR1_ARPE;
     TIMER4_BASE->CR2 = 0;
     TIMER4_BASE->SMCR = 0;
     TIMER4_BASE->DIER = 0;
     TIMER4_BASE->EGR = 0;
-    TIMER4_BASE->CCMR1 = (0b110 << 4) | TIMER_CCMR1_OC1PE |(0b110 << 12) | TIMER_CCMR1_OC2PE;
-    TIMER4_BASE->CCMR2 = (0b110 << 4) | TIMER_CCMR2_OC3PE |(0b110 << 12) | TIMER_CCMR2_OC4PE;
+    TIMER4_BASE->CCMR1 = (0b110 << 4) | TIMER_CCMR1_OC1PE | (0b110 << 12) | TIMER_CCMR1_OC2PE;
+    TIMER4_BASE->CCMR2 = (0b110 << 4) | TIMER_CCMR2_OC3PE | (0b110 << 12) | TIMER_CCMR2_OC4PE;
     TIMER4_BASE->CCER = TIMER_CCER_CC1E | TIMER_CCER_CC2E | TIMER_CCER_CC3E | TIMER_CCER_CC4E;
     TIMER4_BASE->PSC = 71;
     TIMER4_BASE->ARR = 4000;
     TIMER4_BASE->DCR = 0;
     TIMER4_BASE->CCR1 = 1000;
-
     TIMER4_BASE->CCR1 = channel_3;
     TIMER4_BASE->CCR2 = channel_3;
     TIMER4_BASE->CCR3 = channel_3;
@@ -84,5 +86,6 @@ void timer_setup(void) {
     pinMode(PB8, PWM);
     pinMode(PB9, PWM);
   }
+
 }
 
