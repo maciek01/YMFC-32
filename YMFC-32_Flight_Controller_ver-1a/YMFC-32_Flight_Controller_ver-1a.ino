@@ -16,7 +16,8 @@
 ///////////////////////////////////////////////////////////////////////////////////////
 
 #include <Wire.h>                          //Include the Wire.h library so we can communicate with the gyro.
-HardWire HWire(2, I2C_FAST_MODE);          //Initiate I2C port 2 at 400kHz.
+//HardWire HWire(2, I2C_FAST_MODE);          //Initiate I2C port 2 at 400kHz.
+TwoWire HWire(2, I2C_FAST_MODE);          //Initiate I2C port 2 at 400kHz.
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //PID gain and limit settings
