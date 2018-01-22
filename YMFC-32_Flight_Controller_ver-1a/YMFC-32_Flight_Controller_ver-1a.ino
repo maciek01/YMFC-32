@@ -40,15 +40,22 @@ int pid_max_yaw = 400;                     //Maximum output of the PID-controlle
 boolean auto_level = true;                 //Auto level on (true) or off (false).
 
 //Manual accelerometer calibration values for IMU angles:
-int16_t manual_acc_pitch_cal_value = 0;
-int16_t manual_acc_roll_cal_value = 0;
+//int16_t manual_acc_pitch_cal_value = 0;
+//int16_t manual_acc_roll_cal_value = 0;
+//MNK
+int16_t manual_acc_pitch_cal_value = 126;
+int16_t manual_acc_roll_cal_value = 3313;
 
 //Manual gyro calibration values.
 //Set the use_manual_calibration variable to true to use the manual calibration variables.
 uint8_t use_manual_calibration = false;    // Set to false or true;
-int16_t manual_gyro_pitch_cal_value = 0;
-int16_t manual_gyro_roll_cal_value = 0;
-int16_t manual_gyro_yaw_cal_value = 0;
+//int16_t manual_gyro_pitch_cal_value = 0;
+//int16_t manual_gyro_roll_cal_value = 0;
+//int16_t manual_gyro_yaw_cal_value = 0;
+//MNK
+int16_t manual_gyro_pitch_cal_value = -12;
+int16_t manual_gyro_roll_cal_value = -163;
+int16_t manual_gyro_yaw_cal_value = 13;
 
 uint8_t gyro_address = 0x68;               //The I2C address of the MPU-6050 is 0x68 in hexadecimal form.
 
